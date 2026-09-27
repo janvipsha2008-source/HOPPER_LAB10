@@ -1,0 +1,36 @@
+LAB 7 LOGBOOK - Janhavi Sharma - E26B07F0816
+SETUP: clang version 21.0.0 python3 version 3.14.7 
+T1: running hello.py created 8 new files
+T1 prediction: ./hello.c will print Hello from C and python3 hello.c will give error
+T1: the extra step in the C workflow is compiling and it produces file output
+T1: when I run python3 hello.py the CPU executes Hello from Python ; hello.py is just python file
+T1: hello.c is 27 bytes and hello is 33432 bytes. my guess for why: because hello is a compiled binary executable file
+T2: file says hello is Mach-O 64-bit executable arm64
+T2 prediction: python3 itself is a program text like a script
+T2: python3 is an executable binary so when I run python3 hello.py the CPU executes python3 and reads hello.py as data
+T2: my string sits at offset 00003fa0 inside hello
+T2: hello.py contains only text source code ; the extra bytes in hello are executable machine code instructions and binary headers
+T2: Ops saw garbage because a text editor was showing raw executable machine code bytes as if it were human readable text
+T3 prediction: sum will win by about 50x
+T3: C took 0.06 s, Python took 3.84 s, ratio 64x ; the contractor's 50x claim is true
+T3: for hello the gap was 0.02 s and without the time command I would not have noticed
+T3: on every pass the interpreter had to parse, interpret, and evaluate the instruction ; ./sum had that done at compile time
+T3: interpretation cost matters when running heavy loops or computations and does not matter when running short simple scripts
+T3: sum_fast took 0.00 s which is suspicious because computing 100 million additions should take measurable time
+T4: same model of Mac as mine: send both because both the compiled binary and Python interpreter can run natively
+T4: a Windows laptop with Python installed: send hello.py because Windows cannot run macOS Mach-O binaries but can run Python scripts
+T4: the intern's Intel Mac (x86_64): send hello.py because the compiled binary was built specifically for arm64 architecture
+T4: the Ubuntu build server (ELF): send hello.py because Linux requires ELF binaries, not Mach-O binaries
+T4: to run, hello.py needs a Python interpreter on the target ; hello needs a matching CPU architecture and operating system binary format
+T4: the file that travels better is hello.py and the price of that is slower execution speed
+T4: the contractor's note said runs anywhere. verdict: false because compiled binaries only run on the specific CPU architecture and OS format they were compiled for
+T5: at -O0, f has 2 adds and g has 1 ; this does match dis.dis
+T5 prediction: with -O2, f will combine 1 + 1 into 2 and use only 1 add instruction
+T5: at -O2, f has 1 adds. the compiler pre-calculated 1 + 1 into 2 at compile time
+T5: the compiler can afford to optimise because its work happens once at compile time and is paid only once before execution
+T5: the interpreter cannot because its work happens dynamically at runtime and would be paid on every single execution
+T5: sum_fast ran in 0 s because the compiler pre-calculated the loop's sum math at compile time
+T5: building Chrome takes an hour of compiling. developers accept this because compilation costs are paid once by developers so end-users get maximum performance
+EXIT 1: JavaScript can be read in a text editor and the browser runs it with no compile step. it is on the interpreted path. the translator is the JavaScript Engine, which is itself a compiled program
+EXIT 2: the contractor's note had three claims. compiled: true 50x: true runs anywhere: false
+EXIT 3: one prediction I got wrong today, and what I learned from it: I thought compiled binaries were cross-platform, but learned they are locked to specific CPU architectures and OS formats

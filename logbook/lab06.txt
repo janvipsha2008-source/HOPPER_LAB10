@@ -1,0 +1,28 @@
+LAB 6 LOGBOOK - JANHAVI SHARMA - E26B07F0816
+SETUP; my working directory is nst/labs/lab06-os-and-filesystem
+SETUP: my working directory is /Users/janhavisharma/nst/
+T1 prediction: I think ls / will show about 14]? items
+T1: /bin holds terminal commands
+T1: /dev holds hardware and system resources
+T1: / means root directory , ~ means home directory , . means current directory 
+T1: the OS groups files by heirarchal folders
+T2 prediction: ./deploy will not run because it doesn't have execution permissions
+T2 prediction: appending after u-w will remove write permissions because -w indicates write permission
+T2: -rw-r--r-- written in numbers is 644” >> ~/nst/logbook/lab06.txt
+T2: ./deploy failed at first because it it had no execution permission”
+T2: the new policy needed chmod 750
+T3 prediction: ./nst-info will fail because permission is denied
+T3 prediction: adding .py to the name will still run successfully because Linux relies on the shebang line, not file extensions
+T3: python3 nst-info worked but ./nst-info failed because the file lacked executable permission
+T3: renaming the file to .py changed nothing because Linux uses shebang lines instead of file extensions to run scripts
+T3: file extensions are actually used by humans and desktop environments for file organization, not by the Linux kernel to execute files
+T4 prediction: a file called ls in ~/nst/bin will take priority over the real ls command
+T4: nst-info failed from /tmp because /tmp is not in PATH and ~/nst/bin was not yet added to PATH
+T4: the full path worked because it bypasses PATH search and tells the shell exactly where the executable file lives
+T4: PATH is searched from left to right and stops at the first matching executable foundT4: PATH is searched from left to right and stops at the first matching executable found
+T4: my fake ls took over because ~/nst/bin was placed first in PATH before /bin
+T4: the PATH change vanished in a new terminal because export only sets environment variables for the current session
+EXIT 1: a file has -rw-r--r-- running ./file does fail with permission denied and the one command that fixes it is chmod +x file
+EXIT 2: python3 script works but ./script says permission denied. explained to a friend: python3 reads the script as a text input file, whereas ./script requires the OS to directly execute it which requires executable permissions
+EXIT 3: PATH worked yesterday, gone this morning, nobody touched the file. what happened: PATH was exported in the temporary terminal session instead of being saved in the shell configuration file
+EXIT 4: one prediction I got wrong today, and what I learned from it: I thought file extensions like .py mattered in Linux, but learned that the shebang line determines execution
